@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meeting Pet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <!-- HOME SCREEN -->
+  <div id="screen-home" class="screen active">
+    <div class="header">
+      <div class="logo-area">
+        <div class="paw-icon">🐾</div>
+        <div class="title-block">
+          <div class="app-title">MEETING PET</div>
+          <div class="app-sub">collaborative companion</div>
+        </div>
+      </div>
+      <button class="icon-btn" id="btn-settings" title="Settings">⚙</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="home-cta">
+      <div class="cta-text">Ready to start your meeting?</div>
+      <div class="cta-sub">Choose a pet for your team to raise together.</div>
+    </div>
+
+    <button class="btn-primary" id="btn-choose-pet">
+      ▸ CHOOSE A PET
+    </button>
+
+    <div class="home-info">
+      <div class="info-row">🍎 Earn treats when your team communicates well</div>
+      <div class="info-row">🔒 Treats are revealed only at meeting end</div>
+      <div class="info-row">🤝 Works best for cross-team meetings</div>
+    </div>
+  </div>
+
+  <!-- PET SELECTION SCREEN -->
+  <div id="screen-select" class="screen">
+    <div class="screen-header">
+      <button class="back-btn" data-target="home">← BACK</button>
+      <div class="screen-title">CHOOSE YOUR PET</div>
+    </div>
+    <div class="select-hint">Pick a companion for today's meeting</div>
+    <div id="pet-grid" class="pet-grid"></div>
+    <div id="selected-pet-name" class="selected-name"></div>
+    <button class="btn-primary" id="btn-name-pet" disabled>▸ NAME &amp; START</button>
+  </div>
+
+  <!-- NAME PET SCREEN -->
+  <div id="screen-name" class="screen">
+    <div class="screen-header">
+      <button class="back-btn" data-target="select">← BACK</button>
+      <div class="screen-title">NAME YOUR PET</div>
+    </div>
+    <div id="preview-pet-canvas-wrap" class="preview-wrap"></div>
+    <div class="name-form">
+      <label class="pixel-label">Pet Name (optional)</label>
+      <input class="pixel-input" id="pet-name-input" type="text" maxlength="16" placeholder="e.g. Biscuit" />
+      <label class="pixel-label" style="margin-top:12px">Meeting Title (optional)</label>
+      <input class="pixel-input" id="meeting-title-input" type="text" maxlength="32" placeholder="e.g. Q3 Planning" />
+    </div>
+    <button class="btn-primary" id="btn-start-meeting">▸ START MEETING</button>
+  </div>
+
+  <!-- ACTIVE MEETING SCREEN -->
+  <div id="screen-meeting" class="screen">
+    <div class="meeting-header">
+      <div class="meeting-info">
+        <div class="meeting-label">IN MEETING</div>
+        <div id="meeting-title-display" class="meeting-title-text"></div>
+      </div>
+      <div class="timer-wrap">
+        <div class="timer-label">TIME</div>
+        <div id="meeting-timer" class="meeting-timer">00:00</div>
+      </div>
+    </div>
+
+    <div class="pet-stage">
+      <canvas id="active-pet-canvas" width="80" height="80"></canvas>
+      <div id="active-pet-name-display" class="pet-name-badge"></div>
+    </div>
+
+    <div class="transcript-section">
+      <div class="section-label">ANALYZE TRANSCRIPT CHUNK</div>
+      <div class="section-hint">Paste recent meeting text. Your pet will listen — treats are revealed at the end.</div>
+      <textarea id="transcript-input" class="pixel-textarea" placeholder="Paste meeting notes or transcript here...&#10;&#10;e.g. 'Can you clarify what you mean by soft launch?'&#10;     'When is the deadline for the marketing assets?'"></textarea>
+      <div id="analysis-status" class="analysis-status"></div>
+      <button class="btn-analyze" id="btn-analyze" onclick="analyzeTranscript()">🐾 SUBMIT TO PET</button>
+    </div>
+
+  </div>
+
+  <script src="pets.js?v=9"></script>
+  <script src="popup.js?v=9"></script>
+</body>
+</html>
